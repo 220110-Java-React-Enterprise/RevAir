@@ -1,2 +1,2 @@
 # Team-G
-Project1 - Jeremiah and Christopher
+Project1 - Jeremiah, Ibrahima, and Christopher
