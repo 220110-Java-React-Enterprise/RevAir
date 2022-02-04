@@ -8,7 +8,7 @@ public class PersistenceService {
     private static FlightDAO flight;
 
     static {
-        passenger = new TicketDAO(0,"first", "last", 0);
+        passenger = new TicketDAO(0,"first", "last"/*, 0*/);
         flight = new FlightDAO(0, "Tulsa, OK", "Phoenix, AZ");
     }
 

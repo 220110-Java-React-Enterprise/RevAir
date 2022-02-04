@@ -4,23 +4,23 @@ public class TicketDAO {
     private Integer ticketId;
     private String firstName;
     private String lastName;
-    private Integer flightId;
+//    private Integer flightId;
 
     public TicketDAO() {
 
     }
 
-    public TicketDAO(String firstName, String lastName, Integer flightId) {
+    public TicketDAO(String firstName, String lastName/*, Integer flightId*/) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.flightId = flightId;
+//        this.flightId = flightId;
     }
 
-    public TicketDAO(Integer ticketId, String firstName, String lastName, Integer flightId) {
+    public TicketDAO(Integer ticketId, String firstName, String lastName/*, Integer flightId*/) {
         this.ticketId = ticketId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.flightId = flightId;
+//        this.flightId = flightId;
     }
 
     public Integer getTicketId() {
@@ -47,15 +47,15 @@ public class TicketDAO {
         this.lastName = lastName;
     }
 
-    public Integer getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(Integer flightId) {
-        this.flightId = flightId;
-    }
+//    public Integer getFlightId() {
+//        return flightId;
+//    }
+//
+//    public void setFlightId(Integer flightId) {
+//        this.flightId = flightId;
+//    }
 
     public String toJSON() {
-        return "{\"ticket\": {\"ticketId\":" + ticketId + ", \"firstName\":\"" + firstName + "\", \"lastName\": \"" + lastName + "\", \"flightId\": " + flightId + "} }";
+        return "{\"ticket\": {\"ticketId\":" + ticketId + ", \"firstName\":\"" + firstName + "\", \"lastName\": \"" + lastName + "\""/*, \"flightId\": " + flightId*/ + "} }";
     }
 }
