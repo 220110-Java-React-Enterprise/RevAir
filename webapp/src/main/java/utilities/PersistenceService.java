@@ -1,14 +1,14 @@
 package utilities;
 
 import daos.FlightDAO;
-import daos.PassengerDAO;
+import daos.TicketDAO;
 
 public class PersistenceService {
-    private static PassengerDAO passenger;
+    private static TicketDAO passenger;
     private static FlightDAO flight;
 
     static {
-        passenger = new PassengerDAO(0,"first", "last", 0);
+        passenger = new TicketDAO(0,"first", "last", 0);
         flight = new FlightDAO(0, "Tulsa, OK", "Phoenix, AZ");
     }
 
@@ -20,11 +20,11 @@ public class PersistenceService {
         flight = f;
     }
 
-    public static PassengerDAO getPassenger() {
+    public static TicketDAO getPassenger() {
         return passenger;
     }
 
-    public static void setPassenger(PassengerDAO p) {
+    public static void setPassenger(TicketDAO p) {
         passenger = p;
     }
 }
