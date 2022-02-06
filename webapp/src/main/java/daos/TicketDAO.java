@@ -1,6 +1,7 @@
 package daos;
 
 public class TicketDAO {
+
     private Integer ticketId;
     private String firstName;
     private String lastName;
@@ -9,6 +10,7 @@ public class TicketDAO {
     public TicketDAO() {
 
     }
+
 
     public TicketDAO(String firstName, String lastName/*, Integer flightId*/) {
         this.firstName = firstName;
@@ -58,4 +60,6 @@ public class TicketDAO {
     public String toJSON() {
         return "{\"ticket\": {\"ticketId\":" + ticketId + ", \"firstName\":\"" + firstName + "\", \"lastName\": \"" + lastName + "\""/*, \"flightId\": " + flightId*/ + "} }";
     }
+
+
 }

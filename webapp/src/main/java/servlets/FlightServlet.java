@@ -2,6 +2,7 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import daos.FlightDAO;
+import utilities.FileLogger;
 import utilities.GlobalStore;
 import utilities.PersistenceService;
 
@@ -21,7 +22,7 @@ public class FlightServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String JSON = mapper.writeValueAsString(flightObj);
         resp.getWriter().print(JSON);
-        resp.setStatus(200);
+        resp.setStatus(203);
 
     }
 
@@ -34,6 +35,7 @@ public class FlightServlet extends HttpServlet {
 
         resp.setStatus(203);
         resp.getWriter().print("Flight accepted");
+
     }
 
     @Override
@@ -41,6 +43,7 @@ public class FlightServlet extends HttpServlet {
         GlobalStore.setFlightObj(null);
         resp.setStatus(203);
         resp.getWriter().print("Flight Deleted");
+
     }
 }
 

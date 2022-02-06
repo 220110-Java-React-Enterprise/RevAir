@@ -2,6 +2,7 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import daos.TicketDAO;
+import utilities.FileLogger;
 import utilities.GlobalStore;
 import utilities.PersistenceService;
 
@@ -22,7 +23,8 @@ public class TicketServlet extends HttpServlet {
         String JSON = mapper.writeValueAsString(ticketObj);
         resp.getWriter().print(JSON);
 
-        resp.setStatus(200);
+
+        resp.setStatus(203);
     }
 
     @Override
@@ -33,13 +35,17 @@ public class TicketServlet extends HttpServlet {
         GlobalStore.setTicketObj(payload);
 
         resp.setStatus(203);
-        resp.getWriter().print("Ticket accepted.");
+        resp.getWriter().print("Ticket accepted");
+
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GlobalStore.setTicketObj(null);
         resp.setStatus(203);
-        resp.getWriter().print("Ticket Deleted");
+        resp.getWriter().print("Ticket deleted");
+
     }
+
+
 }

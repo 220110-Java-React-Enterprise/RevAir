@@ -10,9 +10,6 @@ import java.time.format.DateTimeFormatter;
  * Interface includes: 2 methods to get the singleton, and 2 methods to input info to be logged
  */
 
-
-//should                                                      implement this on logs and exceptions
-
 public class FileLogger {
 
     private static FileLogger fileLogger;
@@ -89,8 +86,6 @@ public class FileLogger {
         try(Writer fileWriter = new FileWriter(fileName, true)) {
             fileWriter.write(text);
         } catch (Exception e) {
-            //Figure this out later
-            //TODO - figure out what to do if Exception logger logs an exception
             e.printStackTrace();
         }
     }
