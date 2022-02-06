@@ -1,7 +1,7 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import daos.FlightDAO;
+import daos.TicketDAO;
 import utilities.GlobalStore;
 import utilities.PersistenceService;
 
@@ -11,36 +11,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class FlightServlet extends HttpServlet {
+public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        FlightDAO data = PersistenceService.getFlight();
+        TicketDAO ticket = PersistenceService.getPassenger();
 
-        FlightDAO flightObj = GlobalStore.getFlightObj();
+        TicketDAO ticketObj = GlobalStore.getTicketObj();
         ObjectMapper mapper = new ObjectMapper();
-        String JSON = mapper.writeValueAsString(flightObj);
+        String JSON = mapper.writeValueAsString(ticketObj);
         resp.getWriter().print(JSON);
-        resp.setStatus(200);
 
+        resp.setStatus(200);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //send POST with body containing string, integer and bool
         ObjectMapper mapper = new ObjectMapper();
-        FlightDAO payload = mapper.readValue(req.getInputStream(), FlightDAO.class);
-        GlobalStore.setFlightObj(payload);
-
+        TicketDAO payload = mapper.readValue(req.getInputStream(), TicketDAO.class);
+        GlobalStore.setTicketObj(payload);
 
         resp.setStatus(203);
-        resp.getWriter().print("Flight accepted");
+        resp.getWriter().print("Ticket accepted.");
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GlobalStore.setFlightObj(null);
+        GlobalStore.setTicketObj(null);
         resp.setStatus(203);
-        resp.getWriter().print("Flight Deleted");
+        resp.getWriter().print("Ticket Deleted");
     }
 }
-

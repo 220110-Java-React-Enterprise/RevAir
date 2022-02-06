@@ -1,18 +1,18 @@
 package utilities;
 
 import daos.FlightDAO;
-import daos.PassengerDAO;
+import daos.TicketDAO;
 
 public class GlobalStore {
-    private static PassengerDAO passObj;
+    private static TicketDAO ticketObj;
     private static FlightDAO flightObj;
 
-    public static PassengerDAO getPassObj() {
-        return passObj;
+    public static TicketDAO getTicketObj() {
+        return ticketObj;
     }
 
-    public static void setPassObj(PassengerDAO passObj) {
-        GlobalStore.passObj = passObj;
+    public static void setTicketObj(TicketDAO passObj) {
+        GlobalStore.ticketObj = passObj;
     }
 
     public static FlightDAO getFlightObj() {

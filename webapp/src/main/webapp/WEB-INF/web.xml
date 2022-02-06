@@ -11,19 +11,28 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         version="2.5">
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorServlet</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorServlet</location>
+    </error-page>
 
     <listener>
         <listener-class>utilities.DependencyLoaderListener</listener-class>
     </listener>
 
     <servlet>
-        <servlet-name>passenger</servlet-name>
-        <servlet-class>servlets.PassengerServlet</servlet-class>
+        <servlet-name>ticket</servlet-name>
+        <servlet-class>servlets.TicketServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>passenger</servlet-name>
-        <url-pattern>/passenger</url-pattern>
+        <servlet-name>ticket</servlet-name>
+        <url-pattern>/ticket</url-pattern>
     </servlet-mapping>
 
     <servlet>

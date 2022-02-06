@@ -48,3 +48,4 @@ public class FlightDAO {
         return "{\"flight\": {\"flightId\":" + flightId + ", \"departureCity\":\"" + departureCity + "\", \"destinationCity\": \"" + destinationCity + "\"} }";
     }
 }
+
