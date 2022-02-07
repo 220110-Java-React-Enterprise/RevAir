@@ -1,5 +1,7 @@
 package daos;
 
+import java.util.ArrayList;
+
 public class TicketDAO {
 
     private Integer ticketId;
@@ -59,6 +61,13 @@ public class TicketDAO {
 
     public String toJSON() {
         return "{\"ticket\": {\"ticketId\":" + ticketId + ", \"firstName\":\"" + firstName + "\", \"lastName\": \"" + lastName + "\""/*, \"flightId\": " + flightId*/ + "} }";
+    }
+
+    public ArrayList<String> toTicketList() {
+        ArrayList<String> ticketList = new ArrayList<>();
+        ticketList.add(firstName);
+        ticketList.add(lastName);
+        return ticketList;
     }
 
 

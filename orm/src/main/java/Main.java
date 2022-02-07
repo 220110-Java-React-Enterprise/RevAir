@@ -1,4 +1,6 @@
-import Models.Flights;
+import Models.flights;
+import Models.tickets;
+import Utils.FileLogger;
 import Utils.Scriptor;
 
 import java.util.ArrayList;
@@ -6,12 +8,26 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         // test case for adding a flight
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("New York");
-        arrayList.add("Los Angeles");
+        ArrayList<String> flightList = new ArrayList<>();
+        flightList.add("New York");
+        flightList.add("Los Angeles");
 
-        Flights flights = new Flights();
+        ArrayList<String> ticketList = new ArrayList<>();
+        ticketList.add("John");
+        ticketList.add("Doe");
 
-        Scriptor.create(flights, arrayList);
+        flights flights = new flights();
+        tickets tickets = new tickets();
+
+        Scriptor.create(flights, flightList);
+        Scriptor.create(tickets, ticketList);
+    }
+
+    public static void logMessage(String msg) {
+        FileLogger.getFileLogger().log(msg);
+    }
+
+    public static void logException(Exception e) {
+        FileLogger.getFileLogger().log(e);
     }
 }

@@ -1,5 +1,7 @@
 package utilities;
 
+//import orm.Scriptor;
+
 import daos.FlightDAO;
 import daos.TicketDAO;
 
@@ -22,4 +24,5 @@ public class GlobalStore {
     public static void setFlightObj(FlightDAO flightObj) {
         GlobalStore.flightObj = flightObj;
     }
+
 }

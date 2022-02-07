@@ -20,6 +20,7 @@ public class Scriptor {
             pstmt.executeUpdate();
         } catch (SQLException |IOException e) {
             e.printStackTrace();
+            logException(e);
         }
     }
 
@@ -61,5 +62,13 @@ public class Scriptor {
         sqlString += nextPart;
 
         return sqlString;
+    }
+
+    public static void logMessage(String msg) {
+        FileLogger.getFileLogger().log(msg);
+    }
+
+    public static void logException(Exception e) {
+        FileLogger.getFileLogger().log(e);
     }
 }
