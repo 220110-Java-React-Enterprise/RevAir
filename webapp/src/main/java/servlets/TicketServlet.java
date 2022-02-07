@@ -2,6 +2,7 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import daos.TicketDAO;
+import utilities.FileLogger;
 import utilities.GlobalStore;
 import utilities.PersistenceService;
 
@@ -21,8 +22,10 @@ public class TicketServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String JSON = mapper.writeValueAsString(ticketObj);
         resp.getWriter().print(JSON);
+        logMessage("Status: 203");
+        logMessage("Ticket Object Get Response: " + JSON);
+        resp.setStatus(203);
 
-        resp.setStatus(200);
     }
 
     @Override
@@ -32,14 +35,31 @@ public class TicketServlet extends HttpServlet {
         TicketDAO payload = mapper.readValue(req.getInputStream(), TicketDAO.class);
         GlobalStore.setTicketObj(payload);
 
+        logMessage("Status: 203");
+        logMessage("Ticket Object Post Response: " + payload);
         resp.setStatus(203);
-        resp.getWriter().print("Ticket accepted.");
+        resp.getWriter().print("Ticket accepted");
+
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GlobalStore.setTicketObj(null);
+        logMessage("Status: 203");
+        logMessage("Ticket Object Deleted from GlobalStore");
         resp.setStatus(203);
-        resp.getWriter().print("Ticket Deleted");
+        resp.getWriter().print("Ticket deleted");
+
+
+
     }
+
+    public static void logMessage(String msg) {
+        FileLogger.getFileLogger().log(msg);
+    }
+
+    public static void logException(Exception e) {
+        FileLogger.getFileLogger().log(e);
+    }
+
 }
