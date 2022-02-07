@@ -15,6 +15,11 @@ public class flights {
         this.destination_city = destination_city;
     }
 
+    public flights(String departure_city, String destination_city) {
+        this.departure_city = departure_city;
+        this.destination_city = destination_city;
+    }
+
     public Integer getFlight_id() {
         return flight_id;
     }
