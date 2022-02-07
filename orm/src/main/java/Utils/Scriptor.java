@@ -1,35 +1,28 @@
-import Utils.ConnectionManager;
+package Utils;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/*
-"User" Instructions:
-Tables must be predefined in MariaDB.
-First field for each object model MUST be an auto-generated unique id Integer.
-Send an ArrayList to Scriptor methods containing user-entered JSON strings.
- */
 public class Scriptor {
-    private static final Connection connection = ConnectionManager.getConnection();
-    
+
     public static void create(Object obj, ArrayList<String> parameters) {
         try {
             String sql = prepareSqlString(obj, parameters);
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+            PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
             for (int i = 1; i <= parameters.size(); i++) {
                 // ask Kyle if this is okay
                 pstmt.setString(i, parameters.get(i - 1));
             }
-            
+
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-                e.printStackTrace();
+        } catch (SQLException |IOException e) {
+            e.printStackTrace();
         }
     }
-    
+
     public static String prepareSqlString(Object obj, ArrayList<String> userEntries) {
         String nextPart;
         String[] tempStrings;
@@ -66,7 +59,7 @@ public class Scriptor {
             }
         }
         sqlString += nextPart;
-        
+
         return sqlString;
     }
 }

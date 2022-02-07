@@ -1,4 +1,5 @@
-import Models.flights;
+import Models.Flights;
+import Utils.Scriptor;
 
 import java.util.ArrayList;
 
@@ -8,9 +9,9 @@ public class Main {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("New York");
         arrayList.add("Los Angeles");
-        
-        flights flights = new flights();
-        
+
+        Flights flights = new Flights();
+
         Scriptor.create(flights, arrayList);
     }
 }

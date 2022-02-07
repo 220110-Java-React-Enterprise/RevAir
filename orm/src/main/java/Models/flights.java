@@ -1,15 +1,15 @@
 package Models;
 
 // flight POJO
-public class flights {
+public class Flights {
     private Integer flight_id;
     private String departure_city;
     private String destination_city;
 
-    public flights() {
+    public Flights() {
     }
 
-    public flights(Integer flight_id, String departure_city, String destination_city) {
+    public Flights(Integer flight_id, String departure_city, String destination_city) {
         this.flight_id = flight_id;
         this.departure_city = departure_city;
         this.destination_city = destination_city;
