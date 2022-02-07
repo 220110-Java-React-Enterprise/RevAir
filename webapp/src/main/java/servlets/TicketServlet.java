@@ -22,9 +22,10 @@ public class TicketServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String JSON = mapper.writeValueAsString(ticketObj);
         resp.getWriter().print(JSON);
-
-
+        logMessage("Status: 203");
+        logMessage("Ticket Object Get Response: " + JSON);
         resp.setStatus(203);
+
     }
 
     @Override
@@ -34,6 +35,8 @@ public class TicketServlet extends HttpServlet {
         TicketDAO payload = mapper.readValue(req.getInputStream(), TicketDAO.class);
         GlobalStore.setTicketObj(payload);
 
+        logMessage("Status: 203");
+        logMessage("Ticket Object Post Response: " + payload);
         resp.setStatus(203);
         resp.getWriter().print("Ticket accepted");
 
@@ -42,10 +45,21 @@ public class TicketServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GlobalStore.setTicketObj(null);
+        logMessage("Status: 203");
+        logMessage("Ticket Object Deleted from GlobalStore");
         resp.setStatus(203);
         resp.getWriter().print("Ticket deleted");
 
+
+
     }
 
+    public static void logMessage(String msg) {
+        FileLogger.getFileLogger().log(msg);
+    }
+
+    public static void logException(Exception e) {
+        FileLogger.getFileLogger().log(e);
+    }
 
 }
