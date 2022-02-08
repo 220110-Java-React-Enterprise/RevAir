@@ -1,6 +1,6 @@
 package Models;
 
-// flight POJO
+// flights POJO
 public class flights {
     private Integer flight_id;
     private String departure_city;
