@@ -16,8 +16,8 @@ public class Main {
 //        ticketList.add("John");
 //        ticketList.add("Doe");
 
-        Scriptor.create(flights, flightList);
-        Scriptor.create(tickets, ticketList);
+//        Scriptor.create(flights, flightList);
+//        Scriptor.create(tickets, ticketList);
     }
 
     public static void logMessage(String msg) {

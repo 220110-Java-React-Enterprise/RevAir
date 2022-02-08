@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--web.xml is your deployment descriptor
+        this is how tomcat gathers information about your project, such as welcome files,
+            available servlets, how to handle errors and exceptions, and other various
+            configurations you may want tomcat to know about.
+    It belongs in src/main/webapp/WEB-INF/ directory
+-->
+<web-app
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+        version="2.5">
+
+
+    <listener>
+        <listener-class>utilities.DependencyLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>ticket</servlet-name>
+        <servlet-class>servlets.TicketServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ticket</servlet-name>
+        <url-pattern>/ticket</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>flight</servlet-name>
+        <servlet-class>servlets.FlightServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>flight</servlet-name>
+        <url-pattern>/flight</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>errorServlet</servlet-name>
+        <servlet-class>servlets.ErrorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>errorServlet</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorHandler</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>exceptions.WebappException</exception-type>
+        <location>/errorHandler</location>
+    </error-page>
+
+    <servlet>
+        <servlet-name>errorHandler</servlet-name>
+        <servlet-class>servlets.ErrorHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>errorHandler</servlet-name>
+        <url-pattern>/errorHandler</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>
