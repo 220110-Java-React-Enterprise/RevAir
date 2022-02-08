@@ -3,11 +3,13 @@ import Utils.ConnectionManager;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /*
 "User" Instructions:
+(ask Kyle if these are okay)
 Tables must be predefined in MariaDB.
 First field for each object model MUST be an auto-generated unique id Integer.
 Send an ArrayList to Scriptor methods containing user-entered JSON strings.
@@ -70,6 +72,21 @@ public class Scriptor {
         sqlString += nextPart;
         
         return sqlString;
+    }
+    
+    public static void read(Object obj, ArrayList<String> parameters) {
+        try {
+            String sql = prepareReadSqlString(obj, parameters);
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, parameters.get(0));
+
+            ResultSet rs = pstmt.executeQuery();
+            
+            // blocked here
+            //DataStore.flightsList
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     public static String prepareReadSqlString(Object obj, ArrayList<String> userEntries) {
