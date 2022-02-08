@@ -3,11 +3,13 @@ import Models.tickets;
 import Utils.FileLogger;
 import Utils.Scriptor;
 
+
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         // test case for adding a flight
+
 //        ArrayList<String> flightList = new ArrayList<>();
 //        flightList.add("New York");
 //        flightList.add("Los Angeles");
@@ -28,3 +30,4 @@ public class Main {
         FileLogger.getFileLogger().log(e);
     }
 }
+

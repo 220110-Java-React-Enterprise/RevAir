@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionManager {
+
     private static Connection connection;
 
     private ConnectionManager() {
 
     }
+
 
     public static Connection getConnection() throws SQLException, IOException {
         if(connection == null) {
@@ -37,3 +39,4 @@ public class ConnectionManager {
         return connection;
     }
 }
+
