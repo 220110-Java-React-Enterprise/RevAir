@@ -44,4 +44,6 @@ public class flights {
     public void setDestination_city(String destination_city) {
         this.destination_city = destination_city;
     }
+
 }
+
