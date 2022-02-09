@@ -29,7 +29,6 @@ public class flights {
     }
 
     public String getDeparture_city() {
-        System.out.println("Get Departure City");
         return departure_city;
     }
 
@@ -43,5 +42,14 @@ public class flights {
 
     public void setDestination_city(String destination_city) {
         this.destination_city = destination_city;
+    }
+
+    @Override
+    public String toString() {
+        return "flights{" +
+                "flight_id=" + flight_id +
+                ", departure_city='" + departure_city + '\'' +
+                ", destination_city='" + destination_city + '\'' +
+                '}';
     }
 }

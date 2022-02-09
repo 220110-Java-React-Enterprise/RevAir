@@ -11,17 +11,15 @@ public class Scriptor {
     public static void create(Object obj, ArrayList<String> parameters) {
         try {
             String sql = prepareSqlString(obj, parameters);
-            System.out.println("Scriptor");
             PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(sql);
             for (int i = 1; i <= parameters.size(); i++) {
-                // ask Kyle if this is okay
                 pstmt.setString(i, parameters.get(i - 1));
             }
-
+            logMessage("Scriptor create function added" + sql + "To the database");
             pstmt.executeUpdate();
-        } catch (SQLException |IOException e) {
-            e.printStackTrace();
+        } catch (SQLException |IOException | ClassNotFoundException  e) {
             logException(e);
+            e.printStackTrace();
         }
     }
 
@@ -31,7 +29,6 @@ public class Scriptor {
 
         // "INSERT INTO [table name] ([column 1], [column 2], [column 3],...) VALUES (?,?,?,...)"
 
-        System.out.println("Prepare SQL String");
         String sqlString = "INSERT INTO ";
 
         nextPart = obj.getClass().getCanonicalName();

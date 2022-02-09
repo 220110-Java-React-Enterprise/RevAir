@@ -82,7 +82,9 @@ public class FileLogger {
     }
 
     private void writeToLog(String text) {
+        //System.out.println("Writing to log..." + System.getProperty("user.dir"));
         String fileName = getFileName();
+        //System.out.println("File path:" + fileName + ". Text: " + text);
         try(Writer fileWriter = new FileWriter(fileName, true)) {
             fileWriter.write(text);
         } catch (Exception e) {

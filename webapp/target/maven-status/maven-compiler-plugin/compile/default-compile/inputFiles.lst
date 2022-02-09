@@ -1,8 +1,5 @@
 C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\servlets\ErrorServlet.java
-C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\utilities\GlobalStore.java
 C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\utilities\FileLogger.java
-C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\daos\TicketDAO.java
-C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\daos\FlightDAO.java
 C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\utilities\PersistenceService.java
 C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\exceptions\WebappException.java
 C:\Users\cjjon\IdeaProjects\Team-G\webapp\src\main\java\servlets\ErrorHandlerServlet.java
