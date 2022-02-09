@@ -1,5 +1,7 @@
 package daos;
 
+import java.util.ArrayList;
+
 public class FlightDAO {
     private Integer flightId;
     private String departureCity;
@@ -46,6 +48,13 @@ public class FlightDAO {
 
     public String toJSON() {
         return "{\"flight\": {\"flightId\":" + flightId + ", \"departureCity\":\"" + departureCity + "\", \"destinationCity\": \"" + destinationCity + "\"} }";
+    }
+
+    public ArrayList<String> toFlightList() {
+        ArrayList<String> flightList = new ArrayList<>();
+        flightList.add(departureCity);
+        flightList.add(destinationCity);
+        return flightList;
     }
 }
 
