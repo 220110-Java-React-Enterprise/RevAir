@@ -11,17 +11,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        tickets ticket = PersistenceService.getTicket();
         ObjectMapper mapper = new ObjectMapper();
-        String JSON = mapper.writeValueAsString(ticket);
-        resp.getWriter().print(JSON);
-        logMessage("Status: 203");
-        logMessage("Ticket Object Get Response: " + JSON);
+        tickets payload = mapper.readValue(req.getInputStream(), tickets.class);
+        PersistenceService.setTicket(payload);
+
+        try {
+        ResultSet rs = Scriptor.read(payload, PersistenceService.toTicketList(payload));
+            while (rs.next()) {
+                tickets ticket = new tickets();
+                ticket.setTicket_id(rs.getInt("ticket_id"));
+                ticket.setFirst_name(rs.getString("first_name"));
+                ticket.setLast_name(rs.getString("last_name"));
+//                PersistenceService.toTicketListTotal(ticket);
+                String JSON = mapper.writeValueAsString(ticket);
+                resp.getWriter().print(JSON + "\n");
+                logMessage("Status: 203");
+                logMessage("Ticket Object Get Response: " + JSON);
+            }
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+
         resp.setStatus(203);
 
     }
@@ -44,7 +61,12 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PersistenceService.setTicket(null);
+        ObjectMapper mapper = new ObjectMapper();
+        tickets payload = mapper.readValue(req.getInputStream(), tickets.class);
+        PersistenceService.setTicket(payload);
+
+        Scriptor.delete(payload, PersistenceService.toTicketListTotal(payload));
+
         logMessage("Status: 203");
         logMessage("Ticket Object Deleted from GlobalStore");
         resp.setStatus(203);

@@ -1,7 +1,7 @@
 package Utils;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,19 +16,21 @@ public class ConnectionManager {
     }
 
 
-    public static Connection getConnection() throws SQLException, IOException {
+    public static Connection getConnection() throws SQLException, IOException, ClassNotFoundException {
         if(connection == null) {
             connection = connect();
         }
-        System.out.println("Connection Manager");
         return connection;
     }
 
-    private static Connection connect() throws IOException, SQLException {
+    private static Connection connect() throws IOException, SQLException, ClassNotFoundException {
         //build connection
         Properties props = new Properties();
-        FileReader fr = new FileReader( "src/main/resources/jdbc.properties");
-        props.load(fr);
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream input = loader.getResourceAsStream("jdbc.properties");
+        props.load(input);
+
+        Class.forName("org.mariadb.jdbc.Driver");
 
         String connectionString = "jdbc:mariadb://" + props.getProperty("hostname") + ":" +
                 props.getProperty("port") + "/" +

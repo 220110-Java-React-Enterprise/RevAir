@@ -29,7 +29,6 @@ public class flights {
     }
 
     public String getDeparture_city() {
-        System.out.println("Get Departure City");
         return departure_city;
     }
 
