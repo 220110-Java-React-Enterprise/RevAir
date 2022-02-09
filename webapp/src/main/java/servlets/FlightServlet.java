@@ -1,9 +1,9 @@
 package servlets;
 
+import Models.flights;
+import Utils.Scriptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import daos.FlightDAO;
-import utilities.FileLogger;
-import utilities.GlobalStore;
+
 import utilities.PersistenceService;
 
 import javax.servlet.ServletException;
@@ -16,11 +16,9 @@ public class FlightServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        FlightDAO data = PersistenceService.getFlight();
-
-        FlightDAO flightObj = GlobalStore.getFlightObj();
+        flights flight = PersistenceService.getFlight();
         ObjectMapper mapper = new ObjectMapper();
-        String JSON = mapper.writeValueAsString(flightObj);
+        String JSON = mapper.writeValueAsString(flight);
         resp.getWriter().print(JSON);
         resp.setStatus(203);
 
@@ -30,8 +28,10 @@ public class FlightServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ObjectMapper mapper = new ObjectMapper();
-        FlightDAO payload = mapper.readValue(req.getInputStream(), FlightDAO.class);
-        GlobalStore.setFlightObj(payload);
+        flights payload = mapper.readValue(req.getInputStream(), flights.class);
+        PersistenceService.setFlight(payload);
+
+        Scriptor.create(payload, PersistenceService.toFlightList(payload));
 
 
         resp.setStatus(203);
@@ -41,7 +41,7 @@ public class FlightServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GlobalStore.setFlightObj(null);
+        PersistenceService.setFlight(null);
         resp.setStatus(203);
         resp.getWriter().print("Flight Deleted");
 

@@ -20,6 +20,7 @@ public class ConnectionManager {
         if(connection == null) {
             connection = connect();
         }
+        System.out.println("Connection Manager");
         return connection;
     }
 
