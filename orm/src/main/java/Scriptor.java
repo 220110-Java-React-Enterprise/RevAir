@@ -1,11 +1,14 @@
 import Utils.ConnectionManager;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /*
 "User" Instructions:
@@ -74,19 +77,19 @@ public class Scriptor {
         return sqlString;
     }
     
-    public static void read(Object obj, ArrayList<String> parameters) {
+    public static ResultSet read(Object obj, ArrayList<String> parameters) {
         try {
             String sql = prepareReadSqlString(obj, parameters);
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, parameters.get(0));
 
             ResultSet rs = pstmt.executeQuery();
-            
-            // blocked here
-            //DataStore.flightsList
+            return rs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return null;
     }
     
     public static String prepareReadSqlString(Object obj, ArrayList<String> userEntries) {
@@ -109,6 +112,18 @@ public class Scriptor {
         sqlString += nextPart;
         
         return sqlString;
+    }
+    
+    public static void delete(Object obj, ArrayList<String> parameters) {
+        try {
+            String sql = prepareDeleteSqlString(obj, parameters);
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, parameters.get(0));
+            
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     public static String prepareDeleteSqlString(Object obj, ArrayList<String> userEntries) {
