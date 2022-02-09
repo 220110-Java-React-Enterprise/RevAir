@@ -19,8 +19,9 @@ public class Scriptor {
 
             pstmt.executeUpdate();
         } catch (SQLException |IOException e) {
-            e.printStackTrace();
-            logException(e);
+            System.out.println("Well that didn't work");
+//            e.printStackTrace();
+//            logException(e);
         }
     }
 
