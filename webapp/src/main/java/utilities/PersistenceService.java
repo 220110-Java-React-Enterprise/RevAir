@@ -1,30 +1,48 @@
 package utilities;
 
-import daos.FlightDAO;
-import daos.TicketDAO;
+import Models.flights;
+import Models.tickets;
+
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class PersistenceService {
-    private static TicketDAO passenger;
-    private static FlightDAO flight;
+    private static tickets ticket;
+    private static flights flight;
 
-    static {
-        passenger = new TicketDAO(0,"first", "last"/*, 0*/);
-        flight = new FlightDAO(0, "Tulsa, OK", "Phoenix, AZ");
+//    static {
+//        ticket = new tickets(0,"first", "last");
+//        flight = new flights(0, "Tulsa, OK", "Phoenix, AZ");
+//    }
+
+    public static ArrayList<String> toFlightList(flights f) {
+    ArrayList<String> flightList = new ArrayList<>();
+    flightList.add(flight.getDeparture_city());
+    flightList.add(flight.getDestination_city());
+
+    return flightList;
     }
 
-    public static FlightDAO getFlight() {
+    public static ArrayList<String> toTicketList(tickets t) {
+        ArrayList<String> ticketList = new ArrayList<>();
+        ticketList.add(ticket.getFirst_name());
+        ticketList.add(ticket.getLast_name());
+        return ticketList;
+    }
+
+    public static flights getFlight() {
         return flight;
     }
 
-    public static void setFlight(FlightDAO f) {
+    public static void setFlight(flights f) {
         flight = f;
     }
 
-    public static TicketDAO getPassenger() {
-        return passenger;
+    public static tickets getTicket() {
+        return ticket;
     }
 
-    public static void setPassenger(TicketDAO p) {
-        passenger = p;
+    public static void setTicket(tickets t) {
+        ticket = t;
     }
 }

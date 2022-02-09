@@ -15,6 +15,11 @@ public class flights {
         this.destination_city = destination_city;
     }
 
+    public flights(String departure_city, String destination_city) {
+        this.departure_city = departure_city;
+        this.destination_city = destination_city;
+    }
+
     public Integer getFlight_id() {
         return flight_id;
     }
@@ -24,6 +29,7 @@ public class flights {
     }
 
     public String getDeparture_city() {
+        System.out.println("Get Departure City");
         return departure_city;
     }
 
@@ -38,4 +44,6 @@ public class flights {
     public void setDestination_city(String destination_city) {
         this.destination_city = destination_city;
     }
+
 }
+

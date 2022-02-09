@@ -1,9 +1,9 @@
 package servlets;
 
+import Models.tickets;
+import Utils.Scriptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import daos.TicketDAO;
 import utilities.FileLogger;
-import utilities.GlobalStore;
 import utilities.PersistenceService;
 
 import javax.servlet.ServletException;
@@ -16,11 +16,9 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TicketDAO ticket = PersistenceService.getPassenger();
-
-        TicketDAO ticketObj = GlobalStore.getTicketObj();
+        tickets ticket = PersistenceService.getTicket();
         ObjectMapper mapper = new ObjectMapper();
-        String JSON = mapper.writeValueAsString(ticketObj);
+        String JSON = mapper.writeValueAsString(ticket);
         resp.getWriter().print(JSON);
         logMessage("Status: 203");
         logMessage("Ticket Object Get Response: " + JSON);
@@ -32,8 +30,10 @@ public class TicketServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //send POST with body containing string, integer and bool
         ObjectMapper mapper = new ObjectMapper();
-        TicketDAO payload = mapper.readValue(req.getInputStream(), TicketDAO.class);
-        GlobalStore.setTicketObj(payload);
+        tickets payload = mapper.readValue(req.getInputStream(), tickets.class);
+        PersistenceService.setTicket(payload);
+
+        Scriptor.create(payload, PersistenceService.toTicketList(payload));
 
         logMessage("Status: 203");
         logMessage("Ticket Object Post Response: " + payload);
@@ -44,7 +44,7 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GlobalStore.setTicketObj(null);
+        PersistenceService.setTicket(null);
         logMessage("Status: 203");
         logMessage("Ticket Object Deleted from GlobalStore");
         resp.setStatus(203);
