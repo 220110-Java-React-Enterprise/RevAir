@@ -12,7 +12,6 @@ import java.util.Collection;
 
 /*
 "User" Instructions:
-(ask Kyle if these are okay)
 Tables must be predefined in MariaDB.
 First field for each object model MUST be an auto-generated unique id Integer.
 Send an ArrayList to Scriptor methods containing user-entered JSON strings.
@@ -27,7 +26,6 @@ public class Scriptor {
             String sql = prepareCreateSqlString(obj, parameters);
             PreparedStatement pstmt = connection.prepareStatement(sql);
             for (int i = 1; i <= parameters.size(); i++) {
-                // ask Kyle if this is okay
                 pstmt.setString(i, parameters.get(i - 1));
             }
             

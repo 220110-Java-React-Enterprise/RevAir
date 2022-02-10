@@ -73,5 +73,7 @@ public class Main {
         
         Scriptor.delete(flights, flightids);
         Scriptor.delete(tickets, ticketids);
+        
+        
     }
 }
