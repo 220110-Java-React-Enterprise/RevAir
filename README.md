@@ -1,8 +1,8 @@
-# Airline Web Service 
+# RevAir
 Project 1 Team G
 
 ## Description
-This online web service allows users to create, modify and delete their own custom airline flights and passenger tickets.
+This web service allows users to create, modify and delete their own airline tickets, as well as the flights themselves.
 
 ## Contributors
 Jeremiah Smith, Ibrahima Diallo, Christopher Jones
