@@ -20,7 +20,7 @@ This web service allows users to create, modify and delete their own airline tic
   
 ## Project 1
 
-Build an API (Application Programming Interface) that show functionality and store objects in a database that are remotely accessible via Postman. This API will depend on the ORM where the webapp functionalities are accessible through the dependencies. This API is designed for flights where the user can access tickets information, check for the departure and destination location by using the read, update, and delete (CRUD) requests as they want.
+Build an API (Application Programming Interface) that shows functionality and store objects in a database that are remotely accessible via Postman. This API will depend on the ORM where the webapp functionalities are accessible through the dependencies. This API is designed for flights where the user can access tickets information, check for the departure and destination location by using the read, update, and delete (CRUD) requests as they want.
 
 ## Part 1: Custom ORM
 
