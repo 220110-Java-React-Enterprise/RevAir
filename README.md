@@ -41,8 +41,8 @@ Use Postman as the front-end interface, the airline tickets is remotely availabl
 
 ## Bonus Features
 
-ORM can build foreign key relations according o object references.
-ORM can design schema on the fly
+- ORM can build foreign key relations according o object references.
+- ORM can design schema on the fly
 
 ## Minimum Viable Product
 
