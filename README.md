@@ -1,5 +1,6 @@
-# RevAir
-Project 1 Team G
+# Project 1
+
+Team G: RevAir
 
 ## Contributors
 Jeremiah Smith, Ibrahima Diallo, Christopher Jones
